@@ -19,8 +19,8 @@ const Pokedex = () => {
     <div>
       <ul>
 
-         { data.results.map((entry) => (
-          <li><img src={  entry.url }></img>
+         { data.results.map((entry, index) => (
+          <li key={index}><img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`} alt='pokemon'></img>
             { entry.name }</li>
         ))} 
       </ul>
