@@ -1,24 +1,24 @@
 import React from "react";
-import Pokedex from "../Pokemon/Pokedex";
+import Pokedex from "./index";
 import { QueryClient, QueryClientProvider } from "react-query"
-import { 
-  BrowserRouter,
-  Route,
-  Routes
- } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Pokemon from "./Pokemon";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
  export default function AppRoutes() {
   const queryClient = new QueryClient();
+
   return (
-    <div className="App">
-      <h1>Pokédex</h1>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <Routes>
-          <Route exact path='/' element={<Pokedex />} />
-        </Routes>
+        <div className="App">
+          < Link to='/'><h1>Pokédex</h1></Link>
+          <Routes>
+            <Route exact path='/' element={< Pokedex />} />
+            <Route exact path='/pokemon/:id' element={< Pokemon />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </QueryClientProvider>
-  </div>
-);
+  );
  }
