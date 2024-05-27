@@ -7,7 +7,7 @@ export default async function fetchPokemon(id) {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
+      console.error('Erro ao puxar dados do Pokémon', error);
     throw error;
   }
 }
