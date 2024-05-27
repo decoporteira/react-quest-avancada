@@ -1,27 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import fetchPokemon from '../services/fetchPokemon';
 import { useParams } from "react-router-dom";
 
 function Pokemon() {
-  const [pokemonData, setPokemonData] = useState(null);
   const { id } = useParams();
+  const [pokemonData, setPokemonData] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await fetchPokemon(id);
-        setPokemonData(data);
-       
+        setPokemonData(data)
       } catch (error) {
-        console.error('Error fetching Pokémon:', error);
-    
+        console.error('Erro ao puxar dados do Pokémon:', error);
       }
     };
     fetchData();
   }, [id]);
-
+  
   if (!pokemonData) {
-    return null; //
+    return <p>Loading...</p>;
   }
+    
   const capitalizedPokemonName = pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)
   return (
     <div className="flex">
