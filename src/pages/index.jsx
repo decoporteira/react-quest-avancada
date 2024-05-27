@@ -1,43 +1,40 @@
-import React, { useState } from "react";
-import { useQuery } from "react-query";
-import Button from "../Button/Button";
+import React, { useState, useEffect } from "react";
+import Button from "../buttons/Button";
+import fetchPokemonList from "../services/fetchPokemonList";
 import { Link } from "react-router-dom";
 
-
 const Pokedex = () => {
-  const [limit, setLimit] = useState(10);
+  const [offset, setOffset] = useState(0);
+  const [pokemonList, setPokemonList] = useState([]);
 
   const fetchData = async () => {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=0`)
-    if (!response.ok) {
-      throw new Error('Erro ao coletar dados');
+    try {
+      const data = await fetchPokemonList(offset);
+      setPokemonList(prevList => [...prevList, ...data.results]);
+      setOffset(prevOffset => prevOffset + 10 );
+    } catch (error) {
+      console.log('Erro ao puxar dados da API')  
     }
-    return response.json();
-  }
-
-  const { data, isLoading, isError } = useQuery(['pokedexData', limit], fetchData);
-
-  const fetchMoreData = () => {
-    setLimit(limit + 10);
-  }
- 
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error fetching data</p>;
+  };
+  useEffect(() => {
+    fetchData();
+  }, []); //Aqui ele está carregando duas vezes ao abrir a página
+  
   return (
     <>  
       <div className="flex">
-        { data.results.map((entry, index) => (
-          < Link to={`/pokemon/${index + 1}`} key={index}>
-          <div className="cartao-pokemon"  key={index}>
-            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`} alt='pokemon'></img>
-          { entry.name.charAt(0).toUpperCase() + entry.name.slice(1) }
-          </div>
+        {pokemonList.map((entry, index) => (
+          <Link to={`/pokemon/${index + 1}`} key={index}>
+            <div className="cartao-pokemon">
+              <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`} alt='pokemon' />
+              {entry.name.charAt(0).toUpperCase() + entry.name.slice(1)}
+            </div>
           </Link>
-        ))} 
+        ))}
       </div>
-      < Button title="Carregar mais" onClick={fetchMoreData} ></Button>
+      <Button title="Carregar mais" onClick={fetchData} />
     </> 
   );
-}
+};
 
 export default Pokedex;
