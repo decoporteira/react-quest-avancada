@@ -48,14 +48,21 @@
   padding-left: 10px;
   padding-right: 10px;
   margin: 7px;
-  width: 120px;
+  width: 140px;
+  height: 160px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
   align-content: center;
-  
+  background-color: #fafafa;
+  transition-duration: .3s;
+}
+
+.cartao-pokemon:hover {
+  background-color: #ffffff;
+  transition-duration: .3s; 
 }
 
 .carregar {
@@ -74,23 +81,46 @@
   font-size: 1rem;
   line-height: 1.5;
   border-radius: .25rem;
+  transition-duration: 1s; 
 }
-
+.carregar:hover {
+  background-color: #81131e;
+  cursor: pointer;
+  transition-duration: 1s;  
+}
 a {
   font-weight: 500;
   color: #ff6464;
   text-decoration: inherit;
+  transition-duration: 1s; 
 }
 a:hover {
-  color: #f25353;
-  text-decoration: underline;
+  color: #81131e;
+  
+  transition-duration: 1s; 
 }
 
 .inside {
-  width: fit-content;
+  width: 300px;
   padding-left: 20px;
   padding-right: 20px;
 }
 
+.img-big {
+  width: 150px;
+}
 
+p {
+  margin-block-start: .4em;
+  margin-block-end: .4em;
+}
+
+h3 {
+  margin-block-end: .4em;
+}
+
+body {
+  background-color: #fdeaea;
+  
+}
 

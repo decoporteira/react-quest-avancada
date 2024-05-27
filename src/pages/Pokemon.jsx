@@ -16,7 +16,7 @@ function Pokemon() {
     };
     fetchData();
   }, [id]);
-  
+
   if (!pokemonData) {
     return <p>Loading...</p>;
   }
@@ -26,22 +26,22 @@ function Pokemon() {
     <div className="flex">
        <div className="cartao-pokemon inside">
         <h1>{capitalizedPokemonName}</h1>
-        <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonData.id}.png`} alt='pokemon'></img>
-          <strong>Pokedex #:</strong> {pokemonData.id}
-          <strong>Height:</strong> {pokemonData.height * 10} cm
-          <strong>Weight:</strong> {pokemonData.weight * 0.1} kg
-          <strong>Type:</strong>
-          <ul>
+        <img className="img-big" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonData.id}.png`} alt='pokemon'></img>
+          <h2><strong>Pokedex #:</strong> {pokemonData.id}</h2>
+          <p><strong>Height:</strong> {pokemonData.height * 10} cm</p>
+          <p><strong>Weight:</strong> {pokemonData.weight * 0.1} kg</p>
+          <h3><strong>Type:</strong></h3>
+          
           { pokemonData.types.map((type, index) => (
-            <li key={index}>{type.type.name}</li>
+            <p key={index}>{type.type.name}</p>
         ))} 
-          </ul>
-          <strong>Abilities:</strong>
-          <ul>
+          
+          <h3><strong>Abilities:</strong></h3>
+          
           { pokemonData.abilities.map((ability, index) => (
-            <li key={index}>{ability.ability.name}</li>
+            <p key={index}>{ability.ability.name}</p>
         ))} 
-          </ul>
+          
       </div>
     </div>
   );
