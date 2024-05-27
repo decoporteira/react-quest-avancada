@@ -81,23 +81,22 @@
   font-size: 1rem;
   line-height: 1.5;
   border-radius: .25rem;
-  transition-duration: 1s; 
+  transition-duration: .3s; 
 }
 .carregar:hover {
   background-color: #81131e;
   cursor: pointer;
-  transition-duration: 1s;  
+  transition-duration: .3s;  
 }
 a {
   font-weight: 500;
   color: #ff6464;
   text-decoration: inherit;
-  transition-duration: 1s; 
+  transition-duration: 3.s; 
 }
 a:hover {
   color: #81131e;
-  
-  transition-duration: 1s; 
+  transition-duration: .3s; 
 }
 
 .inside {
