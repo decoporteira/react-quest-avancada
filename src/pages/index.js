@@ -10,7 +10,6 @@ const Pokedex = () => {
   const fetchData = async () => {
     try {
       const data = await fetchPokemonList(offset);
-      console.log(data)
       setPokemonList(prevList => [...prevList, ...data.results]);
       setOffset(prevOffset => prevOffset + 10 );
     } catch (error) {
@@ -20,7 +19,9 @@ const Pokedex = () => {
 
   useEffect(() => {
     fetchData();
-  },[]); //Aqui ele está carregando duas vezes ao abrir a página
+    // eslint-disable-next-line
+  },[]); 
+  
   
   return (
     <>  
