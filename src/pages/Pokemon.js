@@ -32,7 +32,7 @@ function Pokemon() {
   const capitalizedPokemonName = pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)
   return (
     <Section>
-       <Card_Inside>
+       <CardInside>
         <h1>{capitalizedPokemonName}</h1>
         <IMG className="img-big" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonData.id}.png`} alt='pokemon'></IMG>
           <h2><strong>Pokedex #:</strong> {pokemonData.id}</h2>
@@ -55,7 +55,7 @@ function Pokemon() {
         <p>{pokemonData.moves.map((move, index) => move.move.name).join(', ')}</p>
         
           
-      </Card_Inside>
+      </CardInside>
     </Section>
   );
 }
@@ -76,7 +76,7 @@ const Section = styled.section`
     margin-block-end: .4em;
   }
 `
-const Card_Inside = styled.div`
+const CardInside = styled.div`
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 20px 0px;
   border-radius: 10px;
   padding-top: 20px;

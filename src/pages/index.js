@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Button from "../buttons/Button";
 import fetchPokemonList from "../services/fetchPokemonList";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -30,14 +29,14 @@ const Pokedex = () => {
       <Section>
         {pokemonList.map((entry, index) => (
           <Link to={`/pokemon/${index + 1}`} key={index}>
-            <Card_Pokemon>
+            <CardPokemon>
               <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`} alt='pokemon' />
               {entry.name.charAt(0).toUpperCase() + entry.name.slice(1)}
-            </Card_Pokemon>
+            </CardPokemon>
           </Link>
         ))}
       </Section>
-      <Button_more title="Carregar mais" onClick={fetchData}>Carregar mais</Button_more>
+      <Button title="Carregar mais" onClick={fetchData}>Carregar mais</Button>
     </> 
   );
 };
@@ -51,7 +50,7 @@ const Section = styled.section`
   justify-content: center;
   margin-top: 20px;
 `
-const Card_Pokemon = styled.div`
+const CardPokemon = styled.div`
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 20px 0px;
   border-radius: 10px;
   padding-top: 10px;
@@ -74,7 +73,7 @@ const Card_Pokemon = styled.div`
     box-shadow: rgba(100, 100, 111, 0.4) 0px 8px 30px 0px;
   }
   `
-  const Button_more = styled.button`
+  const Button = styled.button`
     color: #fff;
     background-color: #dc3545;
     border-color: #dc3545;
