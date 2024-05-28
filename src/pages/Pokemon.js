@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import fetchPokemon from '../services/fetchPokemon';
 import { useParams } from "react-router-dom";
 import fetchAbility from "../services/fetchAbility";
+import styled from "styled-components";
 
 function Pokemon() {
   const { id } = useParams();
@@ -30,10 +31,10 @@ function Pokemon() {
     
   const capitalizedPokemonName = pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)
   return (
-    <div className="flex">
-       <div className="cartao-pokemon inside">
+    <Section>
+       <Card_Inside>
         <h1>{capitalizedPokemonName}</h1>
-        <img className="img-big" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonData.id}.png`} alt='pokemon'></img>
+        <IMG className="img-big" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonData.id}.png`} alt='pokemon'></IMG>
           <h2><strong>Pokedex #:</strong> {pokemonData.id}</h2>
           <p><strong>Height:</strong> {pokemonData.height * 10} cm</p>
           <p><strong>Weight:</strong> {pokemonData.weight * 0.1} kg</p>
@@ -54,11 +55,49 @@ function Pokemon() {
         <p>{pokemonData.moves.map((move, index) => move.move.name).join(', ')}</p>
         
           
-      </div>
-    </div>
+      </Card_Inside>
+    </Section>
   );
 }
+const Section = styled.section`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 20px;
+  margin-right: 20px;
+  justify-content: center;
 
-
+  p {
+    margin-block-start: .4em;
+    margin-block-end: .4em;
+  }
+  
+  h3 {
+    margin-block-end: .4em;
+  }
+`
+const Card_Inside = styled.div`
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 20px 0px;
+  border-radius: 10px;
+  padding-top: 20px;
+  padding-bottom: 35px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  background-color: #fafafa;
+  transition-duration: .3s;
+  width: 960px;
+  padding-left: 30px;
+  padding-right: 30px;
+  height: auto;
+  
+`
+const IMG = styled.img`
+  width: 150px;
+`
 
 export default Pokemon;
