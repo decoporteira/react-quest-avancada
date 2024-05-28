@@ -103,6 +103,7 @@ a:hover {
   width: 300px;
   padding-left: 20px;
   padding-right: 20px;
+  height: auto;
 }
 
 .img-big {

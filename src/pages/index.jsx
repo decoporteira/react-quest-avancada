@@ -6,19 +6,21 @@ import { Link } from "react-router-dom";
 const Pokedex = () => {
   const [offset, setOffset] = useState(0);
   const [pokemonList, setPokemonList] = useState([]);
-
+  
   const fetchData = async () => {
     try {
       const data = await fetchPokemonList(offset);
+      console.log(data)
       setPokemonList(prevList => [...prevList, ...data.results]);
       setOffset(prevOffset => prevOffset + 10 );
     } catch (error) {
       console.log('Erro ao puxar dados da API')  
     }
   };
+
   useEffect(() => {
     fetchData();
-  }, []); //Aqui ele está carregando duas vezes ao abrir a página
+  },[]); //Aqui ele está carregando duas vezes ao abrir a página
   
   return (
     <>  
